@@ -2,9 +2,13 @@
 import { LoginButton } from '@telegram-auth/react';
 import React from 'react'
 
+interface TelegramBtnProps {
+  setAuth: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const TelegramBtn = ({ setAuth }) => {
-  const handleAuth = async (data) => {
+const TelegramBtn: React.FC<TelegramBtnProps> = ({ setAuth }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleAuth = async (data: any) => {
     const query = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}users/create`, {
       method: 'POST',
       body: data

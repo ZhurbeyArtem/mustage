@@ -16,9 +16,11 @@ const HomeComponent = () => {
         setIsAuth(JSON.parse(storedAuth));
       }
     }
-    
+
     if (searchParams.get('telegram_id') != null) {
       searchParams.forEach((value, key) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-expect-error
         user[key] = value;
       });
       localStorage.setItem('user', JSON.stringify(user))
