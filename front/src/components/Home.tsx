@@ -1,0 +1,42 @@
+"use client";
+import React, { useEffect, useState } from 'react'
+import UserCard from './UserCard';
+import TelegramBtn from './TelegramBtn';
+import { useSearchParams } from 'next/navigation';
+
+
+const HomeComponent = () => {
+  const [isAuth, setIsAuth] = useState(false)
+  const searchParams = useSearchParams()
+  const user = {}
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedAuth = localStorage.getItem('isAuth');
+      if (storedAuth) {
+        setIsAuth(JSON.parse(storedAuth));
+      }
+    }
+    
+    if (searchParams.get('telegram_id') != null) {
+      searchParams.forEach((value, key) => {
+        user[key] = value;
+      });
+      localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem('isAuth', JSON.stringify(true))
+      setIsAuth(true)
+    }
+  }, [])
+
+
+  return (
+    <div>
+      {
+        isAuth
+          ? <UserCard />
+          : <TelegramBtn setAuth={setIsAuth} />
+      }
+    </div>
+  )
+}
+
+export default HomeComponent
