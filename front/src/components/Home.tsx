@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import UserCard from './UserCard';
 import TelegramBtn from './TelegramBtn';
 import { useSearchParams } from 'next/navigation';
@@ -31,13 +31,16 @@ const HomeComponent = () => {
 
 
   return (
-    <div>
-      {
-        isAuth
-          ? <UserCard />
-          : <TelegramBtn setAuth={setIsAuth} />
-      }
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div>
+        {
+          isAuth
+            ? <UserCard />
+            : <TelegramBtn setAuth={setIsAuth} />
+        }
+      </div >
+    </Suspense>
+
   )
 }
 
