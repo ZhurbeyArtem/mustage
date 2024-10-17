@@ -11,7 +11,7 @@ interface ICustomTable {
 
 const CustomTable: FC<ICustomTable> = ({ data, isLoading }) => {
   return (
-    <Table bordered loading={isLoading} columns={columns} dataSource={data} className='max-w-screen w-[80%]' scroll={{x: true}}/>
+    <Table bordered loading={isLoading} columns={columns} dataSource={data} className='w-full' scroll={{x: true}}/>
   )
 }
 

@@ -41,7 +41,7 @@ export class UserService {
       const user = await this.findOne(data.telegram_id);
       if (user) return user;
       return await this.usersRepository.save(data);
-    } catch (error) {      
+    } catch (error) { 
       throw new HttpException(
         'Opps something went wrong try again',
         HttpStatus.BAD_GATEWAY,

@@ -13,13 +13,15 @@ export class TelegramService {
       const user = { ...ctx.message.from, telegram_id: ctx.message.from.id };
 
       const userPhotos = await ctx.telegram.getUserProfilePhotos(user.id);
-      const photo = await ctx.telegram.getFileLink(
-        userPhotos.photos[0][0].file_id,
-      );
+
+      let photo;
+      if (userPhotos.photos.length > 0) {
+        photo = await ctx.telegram.getFileLink(userPhotos.photos[0][0].file_id);
+      }
 
       const newUser = {
         ...user,
-        photo: photo.href,
+        photo: photo ? photo.href : '',
         phoneNumber: contact.phone_number,
       };
       delete newUser.id;

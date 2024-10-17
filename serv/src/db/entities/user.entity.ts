@@ -11,8 +11,8 @@ export class User {
   @Column({ type: 'varchar' })
   first_name: string;
 
-  @Column({ type: 'varchar' })
-  last_name: string;
+  @Column({ type: 'varchar', nullable: true })
+  last_name?: string;
 
   @Column({ type: 'varchar', nullable: true })
   phoneNumber?: string;

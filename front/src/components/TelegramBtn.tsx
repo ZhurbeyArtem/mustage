@@ -1,5 +1,6 @@
 'use client';
 import { LoginButton } from '@telegram-auth/react';
+import axios from 'axios';
 import React from 'react'
 
 interface TelegramBtnProps {
@@ -9,11 +10,9 @@ interface TelegramBtnProps {
 const TelegramBtn: React.FC<TelegramBtnProps> = ({ setAuth }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleAuth = async (data: any) => {
-    const query = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}users/create`, {
-      method: 'POST',
-      body: data
-    })
-    const result = await query.json()
+    const query = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}users/create`, data)
+    console.log(query);
+    
     localStorage.setItem('user', JSON.stringify(result))
     localStorage.setItem('isAuth', JSON.stringify(true))
     setAuth(true)

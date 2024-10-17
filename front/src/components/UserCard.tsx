@@ -9,7 +9,7 @@ const UserCard = () => {
 
   return (
     <div className='max-w-[320px] w-full border-gray-100 border-2 rounded-md p-3 flex flex-col items-center gap-2 '>
-      <Image src={user.photo} width={160} height={160} alt={'user photo'} className='rounded-full' />
+      {user.photo.length > 0 ? <Image src={user.photo} width={160} height={160} alt={'user photo'} className='rounded-full' /> : <p className='rounded-full w-[160px] h-[160px] bg-blue-300 text-center flex justify-center items-center text-[40px]'>{user.first_name[0]}</p>}
       <h3>{user.first_name} {user.last_name}</h3>
       <p>Телеграм ід: {user.telegram_id}</p>
       <p>Нікнейм: @{user.username}</p>
